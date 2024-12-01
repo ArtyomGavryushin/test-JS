@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://127.0.0.1:5000"; // URL Flask API
+const API_BASE_URL = "https://test-js-kn6x.onrender.com/"; // Убедитесь, что адрес API корректный
 
 export const getTasks = async () => {
   const response = await axios.get(`${API_BASE_URL}/tasks`);
-  return response.data.tasks;
+  return response.data;
 };
 
 export const addTask = async (text) => {
