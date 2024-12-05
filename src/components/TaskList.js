@@ -4,7 +4,7 @@ function TaskList({ tasks, onUpdateTask, onDeleteTask }) {
   return (
     <div className="task-list">
       {tasks.map((task) => (
-        <div key={task.id} className="task-card">
+        <div key={task.id} className="task-item">
           <h3
             style={{
               textDecoration: task.done ? "line-through" : "none",
@@ -12,15 +12,18 @@ function TaskList({ tasks, onUpdateTask, onDeleteTask }) {
           >
             {task.text}
           </h3>
-          <p>{task.description}</p>
-          <div className="task-buttons">
+          <p className="task-description">{task.description}</p>
+          <div className="task-actions">
             <button
+              className="btn-complete"
               onClick={() => onUpdateTask(task.id, !task.done)}
-              className={task.done ? "undo-button" : "done-button"}
             >
               {task.done ? "Отменить" : "Выполнено"}
             </button>
-            <button onClick={() => onDeleteTask(task.id)} className="delete-button">
+            <button
+              className="btn-delete"
+              onClick={() => onDeleteTask(task.id)}
+            >
               Удалить
             </button>
           </div>

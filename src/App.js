@@ -5,7 +5,6 @@ import "./style.css";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [view, setView] = useState("tasks"); // "tasks" или "add"
 
   // Загрузка задач из localStorage
   useEffect(() => {
@@ -24,7 +23,6 @@ function App() {
     const newTask = { id: Date.now(), text, description, done: false };
     const updatedTasks = [...tasks, newTask];
     saveTasks(updatedTasks);
-    setView("tasks"); // Возвращаемся к списку задач
   };
 
   // Обновление задачи (отметить как выполненную)
@@ -44,19 +42,12 @@ function App() {
   return (
     <div className="app-container">
       <h1>ToDoList MiniApp</h1>
-      {view === "add" ? (
-        <TaskForm onAddTask={handleAddTask} />
-      ) : (
-        <TaskList
-          tasks={tasks}
-          onUpdateTask={handleUpdateTask}
-          onDeleteTask={handleDeleteTask}
-        />
-      )}
-      <div className="buttons-container">
-        <button onClick={() => setView("add")}>Добавить задачу</button>
-        <button onClick={() => setView("tasks")}>Посмотреть задачи</button>
-      </div>
+      <TaskForm onAddTask={handleAddTask} />
+      <TaskList
+        tasks={tasks}
+        onUpdateTask={handleUpdateTask}
+        onDeleteTask={handleDeleteTask}
+      />
     </div>
   );
 }

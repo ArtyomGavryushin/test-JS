@@ -7,89 +7,79 @@ body {
 
 .app-container {
   max-width: 600px;
-  margin: 20px auto;
+  margin: 50px auto;
   padding: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  color: #333333;
-  font-size: 24px;
+  text-align: center;
+  color: #333;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .task-form input,
 .task-form textarea {
-  width: calc(100% - 20px);
+  width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 .task-form button {
-  background-color: #28a745;
-  color: #ffffff;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-}
-
-.task-form button:hover {
-  background-color: #218838;
 }
 
 .task-list {
   margin-top: 20px;
 }
 
-.task-card {
-  background: #f9f9f9;
-  margin: 10px 0;
+.task-item {
+  background: #f1f1f1;
   padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.task-buttons button {
-  margin-right: 10px;
+.task-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-complete {
+  background: #4caf50;
+  color: white;
   padding: 5px 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.done-button {
-  background-color: #28a745;
+.btn-delete {
+  background: #f44336;
   color: white;
-}
-
-.undo-button {
-  background-color: #ffc107;
-  color: white;
-}
-
-.delete-button {
-  background-color: #dc3545;
-  color: white;
-}
-
-.buttons-container {
-  margin-top: 20px;
-}
-
-.buttons-container button {
-  margin: 5px;
-  padding: 10px 15px;
+  padding: 5px 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.buttons-container button:hover {
-  opacity: 0.8;
+.task-description {
+  color: #666;
+  margin-top: 5px;
 }
