@@ -1,53 +1,34 @@
-import React, { useEffect, useState } from "react";
-import TaskList from "./components/TaskList";
-import TaskForm from "./components/TaskForm";
+import React, { useState } from "react";
+import TaskManager from "./Task/TaskManager";
+import TaskCalendar from "./Calendar/TaskCalendar";
+import TaskCheck from "./Check/TaskCheck";
 import "./style.css";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("Task");
   const [tasks, setTasks] = useState([]);
 
-  // Загрузка задач из localStorage
-  useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    setTasks(storedTasks);
-  }, []);
-
-  // Сохранение задач в localStorage
-  const saveTasks = (tasks) => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    setTasks(tasks);
-  };
-
-  // Добавление задачи
-  const handleAddTask = (text, description) => {
-    const newTask = { id: Date.now(), text, description, done: false };
-    const updatedTasks = [...tasks, newTask];
-    saveTasks(updatedTasks);
-  };
-
-  // Обновление задачи (отметить как выполненную)
-  const handleUpdateTask = (id, done) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === id ? { ...task, done } : task
-    );
-    saveTasks(updatedTasks);
-  };
-
-  // Удаление задачи
-  const handleDeleteTask = (id) => {
-    const updatedTasks = tasks.filter((task) => task.id !== id);
-    saveTasks(updatedTasks);
+  const renderPage = () => {
+    switch (currentPage) {
+      case "Task":
+        return <TaskManager tasks={tasks} setTasks={setTasks} />;
+      case "Check":
+        return <TaskCheck />;
+      case "Calendar":
+        return <TaskCalendar tasks={tasks} />;
+      default:
+        return <TaskManager tasks={tasks} setTasks={setTasks} />;
+    }
   };
 
   return (
     <div className="app-container">
-      <h1>ToDoList MiniApp</h1>
-      <TaskForm onAddTask={handleAddTask} />
-      <TaskList
-        tasks={tasks}
-        onUpdateTask={handleUpdateTask}
-        onDeleteTask={handleDeleteTask}
-      />
+      <header className="app-header">
+        <button onClick={() => setCurrentPage("Task")}>Task</button>
+        <button onClick={() => setCurrentPage("Check")}>Check</button>
+        <button onClick={() => setCurrentPage("Calendar")}>Calendar</button>
+      </header>
+      <main className="app-content">{renderPage()}</main>
     </div>
   );
 }

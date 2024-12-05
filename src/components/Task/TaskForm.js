@@ -1,30 +1,37 @@
 import React, { useState } from "react";
 
 function TaskForm({ onAddTask }) {
-  const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [dueDate, setDueDate] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!text.trim()) return;
-    onAddTask(text, description);
-    setText("");
+    if (!title.trim()) return;
+    onAddTask(title, description, dueDate);
+    setTitle("");
     setDescription("");
+    setDueDate("");
   };
 
   return (
     <form onSubmit={handleSubmit} className="task-form">
       <input
         type="text"
-        placeholder="Введите название задачи"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        placeholder="Название задачи"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
         required
       />
       <textarea
-        placeholder="Введите описание задачи"
+        placeholder="Описание задачи"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+      />
+      <input
+        type="date"
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
       />
       <button type="submit">Добавить</button>
     </form>
