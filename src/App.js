@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TaskManager from "./TaskManager";
-import TaskCalendar from "./Calendar/TaskCalendar";
+import TaskCalendar from "./components/Calendar/TaskCalendar";
 import TaskCheck from "./Check/TaskCheck";
 import "./style.css";
 
